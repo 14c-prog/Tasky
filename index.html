@@ -43,12 +43,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="taskdescription" class="form-label">Task Description</label>
-                        <textarea row="6" class="form-control" id="taskdescription" placeholder="Building ans amazing API !!"></textarea>
+                        <textarea row="6" class="form-control" id="taskdescription" placeholder="Building an amazing API !!"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-start">
                     <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary rounded-pill">Save changes</button>
+                    <button type="button" class="btn btn-primary rounded-pill" onclick="saveChanges()" data-bs-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
             </div>
         </section>
         <section>
-            <div class="row">
+            <div class="row task__container">
                 <div class="col-md-6 col-lg-4">
                     <div class="card text-center">
                         <div class="card-header d-flex justify-content-end gap-2">
