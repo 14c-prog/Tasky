@@ -1,14 +1,13 @@
 const taskContainer = document.querySelector(".task__container");
-console.log(taskContainer);
 
-const globeStore = [];
+let globeStore = [];
 
-const newCard = ({ id, imageUrl, taskTitle, taskType, taskDescription, }) => `<div class="col-md-6 col-lg-4" id=${id}>
+const newCard = ({ id, imageUrl, taskTitle, taskType, taskDescription, }) => `<div class="col-md-6 col-lg-4" >
 <div class="card text-center">
     <div class="card-header d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-outline-success">	
             <i class="fas fa-pencil-alt"></i></button>
-        <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+        <button type="button" id=${id} class="btn btn-outline-danger" onclick="deleteCard.apply(this,arguments)"><i class="fas fa-trash-alt" id=${id} onclick="deleteCard.apply(this,arguments)"></i></button>
     </div>
     <img src=${imageUrl}
      class="card-img-top" alt="...">
@@ -48,5 +47,25 @@ const saveChanges = () => {
     taskContainer.insertAdjacentHTML("beforeend", createNewCard);
     globeStore.push(taskData);
 
-    window.localStorage.setItem("Tasky", JSON.stringify({ cards: globeStore }));
+    localStorage.setItem("Tasky", JSON.stringify({ cards: globeStore }));
+};
+
+const deleteCard = (event) => {
+    event = window.event;
+    const targetID = event.target.id;
+    const tagname = event.target.tagName;
+    // console.log(targetID);
+    const newUpdatedArray = globeStore.filter((card) => card.id !== targetID
+
+    );
+
+    globeStore = newUpdatedArray;
+    localStorage.setItem("Tasky", JSON.stringify({ cards: globeStore }))
+    if (tagname === "BUTTON") {
+        return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode
+
+        );
+    }
+    return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode);
+
 };
